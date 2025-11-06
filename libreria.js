@@ -14,28 +14,27 @@ const getBooks = function () {
     card.innerHTML = `
         <div class="card h-100">
         <img src="${libro.img}" class="card-img-top" alt="book">
-        <div class="card-body">
-            <h5 class="card-title">TITOLO</h5>
-            <p class="card-text">${libro.title}
-            ${libro.price}£</p>
-            <button href="#" class="btn btn-primary" onclick="deleteBook(event)">Scarta</button>
+        <div class="card-body m-0">
+            <h5 class="card-title">${libro.title}</h5>
+            <p class="card-text">${libro.price}£</p>
+            <div class="hstack gap-2">
+            <button type="button" class="btn btn-primary" onclick="deleteBook(event)">Scarta</button>
+            <button type="button" class="btn btn-primary" onclick="addToCart(event)">Compa ora</button>
+            </div>
+            </div>
         </div>
         </div>
     `
     console.log(libro.price)
     card.classList.add('col')
     document.querySelector('div.row').appendChild(card)
-    
-    document.querySelector('button').addEventListener('click', (e) => {
-        e.target.parentElement.parentElement.parentElement.remove()
     })
-})
 })
 .catch((err) => {console.log('Errore nella request', err)})
 }
+
 const deleteBook = function(e){
-    e.target.parentElement.parentElement.parentElement.remove()
+    e.target.closest('div.col').remove()
 }
 
 getBooks()
-
