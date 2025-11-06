@@ -37,4 +37,24 @@ const deleteBook = function(e){
     e.target.closest('div.col').remove()
 }
 
+const addToCart = function(e){
+    const cartItem = document.createElement('li')
+    const titoloLibro = e.target.closest('.card-body').innerText
+    const copertinaLibro = e.target.closest('.card').children[0].currentSrc
+    const dettagli = titoloLibro.split('\n')
+    console.log(titoloLibro)
+    console.log(dettagli)
+    console.log(copertinaLibro)    
+
+    cartItem.innerHTML = `
+        <a class="dropdown-item hstack" href="#">
+        <img src="${copertinaLibro}" class="card-img-top" alt="book">
+        <p>${dettagli[0]}</p>
+        <button id="acquista" class="btn fs-6 bg-transparent ms-auto me-1">
+            <i class="bi bi-trash-fill"></i>
+        </button>
+        </a>
+    `
+}
+
 getBooks()
